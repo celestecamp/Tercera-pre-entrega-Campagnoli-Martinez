@@ -1,0 +1,20 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block titulo %}
+    <title>Búsqueda</title>
+{% endblock %}
+
+{% block titulo_pag %}
+    <div class="container">
+        <div class="welcome-hero-txt">
+            <h2>Buscar Jugadores</h2>
+        </div>
+{% endblock %}
+
+{% block contenido %}
+        <form action="{% url 'encontrar_jugadores' %}" method="get">
+            {% csrf_token %}
+            <p class="buscar">Buscar por nombre, apellido, país o posición: <input type="text" name="buscar" id="buscar"></p>
+            <input class="inputForm" type="submit" value="Buscar">
+        </form>
+{% endblock %}

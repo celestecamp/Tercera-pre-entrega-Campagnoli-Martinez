@@ -1,0 +1,63 @@
+{% extends "aplicacion/index.html" %}
+
+{% block titulo %}
+    <title>Equipos</title>
+{% endblock %}
+
+{% block titulo_pag %}
+<div class="container">
+    <div class="welcome-hero-txt">
+        <h2>Equipos</h2>
+
+    </div>
+{% endblock %}
+
+{% block contenido %}
+<table>
+    <tr>
+        <td width="200"><h2 class="botonAgregar">EQUIPOS</h2></td>
+        <td>
+            <a href="{% url 'EquipoForm' %}" class="btn btn-primary btn-sm boton">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Dueño/s</th>
+                    <th>Fundación</th>
+                    <th>Títulos</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for e in equipos %}
+                    <tr>
+                        <td>{{ e.nombre }}</td>
+                        <td>{{ e.duenio }}</td>
+                        <td>{{ e.fundacion }}</td>
+                        <td>{{ e.titulos }}</td>
+
+                        <td>
+                            <a 
+                            href=""
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block bckg %}
+<section id="home" class="equi_welcome-hero">
+{% endblock %}

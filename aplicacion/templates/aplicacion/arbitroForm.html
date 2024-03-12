@@ -1,0 +1,22 @@
+{% extends 'aplicacion/index.html' %}
+
+{% block titulo %}
+    <title>Agregar Arbitro</title>
+{% endblock %}
+
+{% block titulo_pag %}
+    <div class="container">
+        <div class="welcome-hero-txt">
+            <h2>Agregar Árbitro</h2>
+        </div>
+{% endblock %}
+
+{% block contenido %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <table class="formulario">
+                {{ form.as_table }}
+            </table>
+            <input class="inputForm" type="submit" value="Guardar nuevo árbitro">
+        </form>
+{% endblock %}

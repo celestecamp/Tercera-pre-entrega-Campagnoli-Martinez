@@ -1,0 +1,54 @@
+{% extends "aplicacion/index.html" %}
+
+{% block titulo %}
+    <title>Árbitros</title>
+{% endblock %}
+
+{% block titulo_pag %}
+<div class="container">
+    <div class="welcome-hero-txt">
+        <h2>Árbitros</h2>
+
+    </div>
+{% endblock %}
+
+{% block contenido %}
+<table>
+    <tr>
+        <td width="200"><h2 class="botonAgregar">ARBITROS</h2></td>
+        <td>
+            <a href="{% url 'ArbitroForm' %}" class="btn btn-primary btn-sm boton">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div>
+    <div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Nacimiento</th>
+                    <th>País</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for a in arbitros %}
+                    <tr>
+                        <td>{{ a.apellido }}</td>
+                        <td>{{ a.nombre }}</td>
+                        <td>{{ a.nacimiento }}</td>
+                        <td>{{ a.pais }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block bckg %}
+<section id="home" class="arbi_welcome-hero">
+{% endblock %}

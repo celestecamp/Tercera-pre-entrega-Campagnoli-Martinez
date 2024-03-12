@@ -1,0 +1,58 @@
+{% extends "aplicacion/index.html" %}
+
+{% block titulo %}
+    <title>Jugadores</title>
+{% endblock %}
+
+{% block titulo_pag %}
+<div class="container">
+    <div class="welcome-hero-txt">
+        <h2>Jugadores</h2>
+
+    </div>
+{% endblock %}
+
+{% block contenido %}
+<table>
+    <tr>
+        <td width="200"><h2 class="botonAgregar">JUGADORES</h2></td>
+        <td>
+            <a href="{% url 'JugadorForm' %}" class="btn btn-primary btn-sm boton">
+                <i class="fa fa-plus fa-lg" title="Crear"></i>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div >
+    <div >
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Apellido</th>
+                    <th>Nombre</th>
+                    <th>Posición</th>
+                    <th>Nacimiento</th>
+                    <th>País</th>
+                    <th>Altura (cm)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for j in jugadores %}
+                    <tr>
+                        <td>{{ j.apellido }}</td>
+                        <td>{{ j.nombre }}</td>
+                        <td>{{ j.posicion }}</td>
+                        <td>{{ j.nacimiento }}</td>
+                        <td>{{ j.pais }}</td>
+                        <td>{{ j.altura }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block bckg %}
+<section id="home" class="juga_welcome-hero">
+{% endblock %}
