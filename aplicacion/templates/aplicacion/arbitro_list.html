@@ -17,7 +17,7 @@
     <tr>
         <td width="200"><h2 class="botonAgregar">ARBITROS</h2></td>
         <td>
-            <a href="{% url 'ArbitroForm' %}" class="btn btn-primary btn-sm boton">
+            <a href="{% url 'arbitro_create' %}" class="btn btn-primary btn-sm boton">
                 <i class="fa fa-plus fa-lg" title="Crear"></i>
             </a>
         </td>
@@ -33,15 +33,29 @@
                     <th>Nombre</th>
                     <th>Nacimiento</th>
                     <th>País</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for a in arbitros %}
+                {% for a in arbitro_list %}
                     <tr>
                         <td>{{ a.apellido }}</td>
                         <td>{{ a.nombre }}</td>
                         <td>{{ a.nacimiento }}</td>
                         <td>{{ a.pais }}</td>
+
+                        <td>
+                            <a 
+                            href="{% url 'arbitro_edit' a.id %}"
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                            </a>
+                            <a 
+                            href="{% url 'arbitro_delete' a.id %}"
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                            </a>
+                        </td> 
                     </tr>
                 {% endfor %}
                 </tbody>

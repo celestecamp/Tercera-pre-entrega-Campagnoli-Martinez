@@ -1,0 +1,25 @@
+{% extends "aplicacion/index.html" %}
+
+{% block titulo %}
+    <title>Confirmación</title>
+{% endblock %}
+
+{% block titulo_pag %}
+<div class="container">
+    <div class="welcome-hero-txt">
+        <h2>¿Eliminar jugador?</h2>
+    </div>
+{% endblock %}
+
+{% block contenido %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+            <p style="color:red">{{ object }}</p>
+        </div>
+        <div class = "text-center">
+            <input type="submit" class="btn btn-primary btn-block" value="Confirmar">
+        </div>
+    </form>
+
+{% endblock %}

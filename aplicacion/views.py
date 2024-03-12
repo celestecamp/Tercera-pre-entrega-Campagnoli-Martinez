@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from .models import *
-from .forms import *
 from django.db.models import Q
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView
+from django.urls import reverse_lazy
 #from .forms import *
 
 # Create your views here.
@@ -11,89 +11,61 @@ def home(request):
 
 
 #__________________________________Jugadores
-def jugadores(request):
-    contexto = Jugador.objects.all()
-    return render(request, "aplicacion/jugadores.html", {"jugadores": contexto})
+class jugadorList(ListView):
+    model = Jugador
 
-def jugadoresForm(request):
-    if request.method == "GET":
-        miForm = JugadorForm()
-        return render(request, "aplicacion/jugadorForm.html", {"form": miForm})
-    else:
-        miForm = JugadorForm(request.POST)
-        if miForm.is_valid():
-            juga_nombre = miForm.cleaned_data.get("nombre")
-            juga_apellido = miForm.cleaned_data.get("apellido")
-            juga_nac = miForm.cleaned_data.get("nacimiento")
-            juga_pais = miForm.cleaned_data.get("pais")
-            juga_pos = miForm.cleaned_data.get("posicion")
-            juga_altura = miForm.cleaned_data.get("altura")
+class jugadorCreate(CreateView):
+    model = Jugador
+    fields = ["nombre", "apellido", "posicion", "nacimiento", "altura", "pais"]
+    success_url = reverse_lazy("jugadores")
 
-            juga = Jugador(nombre=juga_nombre.capitalize(),
-                           apellido = juga_apellido.capitalize(),
-                           nacimiento = juga_nac,
-                           pais = juga_pais.capitalize(),
-                           posicion = juga_pos.capitalize(),
-                           altura = juga_altura)
-            juga.save()
+class jugadorUpdate(UpdateView):
+    model = Jugador
+    fields = ["nombre", "apellido", "posicion", "nacimiento", "altura", "pais"]
+    success_url = reverse_lazy("jugadores")
 
-            contexto = Jugador.objects.all()
-            return render(request, "aplicacion/jugadores.html", {"jugadores": contexto})
+class jugadorDelete(DeleteView):
+    model = Jugador
+    success_url = reverse_lazy("jugadores")
 
 
 #__________________________________Árbitros
-def arbitros(request):
-    contexto = Arbitro.objects.all()
-    return render(request, "aplicacion/arbitros.html", {"arbitros": contexto})
+class arbitroList(ListView):
+    model = Arbitro
 
-def arbitrosForm(request):
-    if request.method == "GET":
-        miForm = ArbitroForm()
-        return render(request, "aplicacion/arbitroForm.html", {"form": miForm})
-    else:
-        miForm = ArbitroForm(request.POST)
-        if miForm.is_valid():
-            ar_nombre = miForm.cleaned_data.get("nombre")
-            ar_apellido = miForm.cleaned_data.get("apellido")
-            ar_nac = miForm.cleaned_data.get("nacimiento")
-            ar_pais = miForm.cleaned_data.get("pais")
+class arbitroCreate(CreateView):
+    model = Arbitro
+    fields = ["nombre", "apellido", "nacimiento", "pais"]
+    success_url = reverse_lazy("arbitros")
 
-            arbi = Arbitro(nombre=ar_nombre.capitalize(),
-                           apellido = ar_apellido.capitalize(),
-                           nacimiento = ar_nac,
-                           pais = ar_pais.capitalize())
-            arbi.save()
+class arbitroUpdate(UpdateView):
+    model = Arbitro
+    fields = ["nombre", "apellido", "nacimiento", "pais"]
+    success_url = reverse_lazy("arbitros")
 
-            contexto = Arbitro.objects.all()
-            return render(request, "aplicacion/arbitros.html", {"arbitros": contexto})
+class arbitroDelete(DeleteView):
+    model = Arbitro
+    success_url = reverse_lazy("arbitros")
 
 
 #__________________________________Jugadores
-def equipos(request):
-    contexto = Equipo.objects.all()
-    return render(request, "aplicacion/equipos.html", {"equipos": contexto})
+class equipoList(ListView):
+    model = Equipo
 
-def equiposForm(request):
-    if request.method == "GET":
-        miForm = EquipoForm()
-        return render(request, "aplicacion/equipoForm.html", {"form": miForm})
-    else:
-        miForm = EquipoForm(request.POST)
-        if miForm.is_valid():
-            eq_nombre = miForm.cleaned_data.get("nombre")
-            eq_duenio = miForm.cleaned_data.get("duenio")
-            eq_fund = miForm.cleaned_data.get("fundacion")
-            eq_titulos = miForm.cleaned_data.get("titulos")
+class equipoCreate(CreateView):
+    model = Equipo
+    fields = ["nombre", "duenio", "fundacion", "titulos"]
+    success_url = reverse_lazy("equipos")
+       
+class equipoUpdate(UpdateView):
+    model = Equipo
+    fields = ["nombre", "duenio", "fundacion", "titulos"]
+    success_url = reverse_lazy("equipos")
 
-            equi = Equipo(nombre=eq_nombre.capitalize(),
-                           duenio = eq_duenio.capitalize(),
-                           fundacion = eq_fund,
-                           titulos = eq_titulos)
-            equi.save()
+class equipoDelete(DeleteView):
+    model = Equipo
+    success_url = reverse_lazy("equipos")
 
-            contexto = Equipo.objects.all()
-            return render(request, "aplicacion/equipos.html", {"equipos": contexto})
-        
 #__________________________________Buscar
 def buscarJugadores(request):
     return render(request, "aplicacion/buscar.html")

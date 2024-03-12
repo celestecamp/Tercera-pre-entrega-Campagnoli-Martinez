@@ -17,7 +17,7 @@
     <tr>
         <td width="200"><h2 class="botonAgregar">JUGADORES</h2></td>
         <td>
-            <a href="{% url 'JugadorForm' %}" class="btn btn-primary btn-sm boton">
+            <a href="{% url 'jugador_create' %}" class="btn btn-primary btn-sm boton">
                 <i class="fa fa-plus fa-lg" title="Crear"></i>
             </a>
         </td>
@@ -35,10 +35,11 @@
                     <th>Nacimiento</th>
                     <th>País</th>
                     <th>Altura (cm)</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
-                {% for j in jugadores %}
+                {% for j in jugador_list %}
                     <tr>
                         <td>{{ j.apellido }}</td>
                         <td>{{ j.nombre }}</td>
@@ -46,6 +47,19 @@
                         <td>{{ j.nacimiento }}</td>
                         <td>{{ j.pais }}</td>
                         <td>{{ j.altura }}</td>
+
+                        <td>
+                            <a 
+                            href="{% url 'jugador_edit' j.id %}"
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                            </a>
+                            <a 
+                            href="{% url 'jugador_delete' j.id %}"
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-trash fa-sm" title="Delete Record"></i>
+                            </a>
+                        </td> 
                     </tr>
                 {% endfor %}
                 </tbody>

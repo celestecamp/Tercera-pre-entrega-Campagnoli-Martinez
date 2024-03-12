@@ -28,7 +28,7 @@ class Arbitro(models.Model):
 class Equipo(models.Model):
     nombre = models.CharField(max_length=50)
     duenio = models.CharField(max_length=60)
-    fundacion = models.IntegerField(default=1980)
+    fundacion = models.IntegerField()
     titulos = models.IntegerField()
 
     def __str__(self):

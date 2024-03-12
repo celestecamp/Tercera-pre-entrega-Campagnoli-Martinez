@@ -17,7 +17,7 @@
     <tr>
         <td width="200"><h2 class="botonAgregar">EQUIPOS</h2></td>
         <td>
-            <a href="{% url 'EquipoForm' %}" class="btn btn-primary btn-sm boton">
+            <a href="{% url 'equipo_create' %}" class="btn btn-primary btn-sm boton">
                 <i class="fa fa-plus fa-lg" title="Crear"></i>
             </a>
         </td>
@@ -37,7 +37,7 @@
                 </tr>
             </thead>
             <tbody>
-                {% for e in equipos %}
+                {% for e in equipo_list %}
                     <tr>
                         <td>{{ e.nombre }}</td>
                         <td>{{ e.duenio }}</td>
@@ -46,7 +46,13 @@
 
                         <td>
                             <a 
-                            href=""
+                            href="{% url 'equipo_edit' e.id %}"
+                            class="btn btn-primary"
+                            style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-edit fa-sm" title="Edit Record"></i>
+                            </a>
+
+                            <a 
+                            href="{% url 'equipo_delete' e.id %}"
                             class="btn btn-primary"
                             style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;"><i class="fa fa-trash fa-sm" title="Delete Record"></i>
                             </a>
