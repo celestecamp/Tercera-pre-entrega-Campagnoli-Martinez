@@ -80,9 +80,9 @@ def encontrar_jugadores(request):
             Q(pais__icontains=patron.capitalize())
         )
 
-        contexto = {"jugadores": jugadores}
-        return render(request, "aplicacion/jugadores.html", contexto)
+        contexto = {"jugador_list": jugadores}
+        return render(request, "aplicacion/jugador_list.html", contexto)
     
     else:
-        contexto = {"jugadores": Jugador.objects.all()}
-        return render(request, "aplicacion/jugadores.html", contexto)
+        contexto = {"jugador_list": Jugador.objects.all()}
+        return render(request, "aplicacion/jugador_list.html", contexto)
